@@ -6,6 +6,7 @@ var gulp          = require( 'gulp' ),
 	autoprefixer  = require( 'gulp-autoprefixer' ),
     concat        = require( 'gulp-concat' ),
     uglify        = require( 'gulp-uglify' ),
+    deploy        = require( 'gulp-gh-pages' ),
     browserSync   = require( 'browser-sync' ).create();
 
 
@@ -33,12 +34,12 @@ gulp.task( 'sass', function () {
 // Concatenate Javascript; Uglify; map source
 gulp.task( 'js', function() {
     return gulp.src( 'src/javascript/**/*.js' )
-    .pipe( plumber() )
-    .pipe( sourcemaps.init() )
-    .pipe( concat( 'scripts.js' ) )
-    .pipe( uglify() )
-    .pipe( sourcemaps.write( 'sourcemaps' ) )
-    .pipe( gulp.dest( 'build' ) );
+        .pipe( plumber() )
+        .pipe( sourcemaps.init() )
+        .pipe( concat( 'scripts.js' ) )
+        .pipe( uglify() )
+        .pipe( sourcemaps.write( 'sourcemaps' ) )
+        .pipe( gulp.dest( 'build' ) );
 });
 
 
@@ -63,3 +64,9 @@ gulp.task( 'serve', function() {
 
 // Default task
 gulp.task( 'default', ['jade', 'sass', 'js', 'watch', 'serve'] );
+
+// Deploy to GitHub pages
+gulp.task( 'deploy', ['jade', 'sass', 'js'], function() {
+    return gulp.src( './build/**/*' )
+    .pipe( deploy() );
+});
