@@ -1,0 +1,27 @@
+$light-gray:  hsl(   0,   0%,  92% );
+$medium-gray: hsl(   0,   0%,  70% );
+$dark-gray:   hsl(   0,   0%,  15% );
+
+#np {
+
+    label {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    input {
+        border: 1px solid $medium-gray;
+        border-radius: 0;
+        background: #fff;
+    }
+
+    .header {
+        background: $dark-gray;
+        color: #fff;
+    }
+
+    .sidebar {
+        background: $light-gray;
+        border-right: 1px solid $medium-gray;
+    }
+}

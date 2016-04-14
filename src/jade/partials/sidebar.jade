@@ -1,0 +1,37 @@
+mixin fw-input(selector, property, value, unit, type)
+    - var id = selector + '__' + property
+    if unit == ''
+        label(for= id)= property + ':'
+    else
+        label(for= id)= property + ' (' + unit + '):'
+    input.fw-input(
+        id= id
+        data-fw-selector= selector
+        data-fw-property= property
+        value= value
+        data-fw-unit= unit
+        type= type
+    )&attributes(attributes)
+
++fw-input('body', 'font-family', 'Sans', '', 'text' )
+
++fw-input('body', 'font-weight', '400', '', 'number')(
+    step="100"
+    min="100"
+    max="900"
+    )
+    
++fw-input('p', 'font-size', '1.125', 'rem', 'number')(
+    step="0.0625"
+    min="0.0625"
+    )
+    
++fw-input('body', 'line-height', '1.5', '', 'number')(
+    step="0.01"
+    min="0"
+    )
+    
++fw-input('main', 'max-width', '32', 'rem', 'number')(
+    step="0.0625"
+    min="0.0625"
+    )
